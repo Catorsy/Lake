@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="basePath">logs</Property>
+    </Properties>
+    <Appenders>
+        <File name="MyFile" fileName="logs/app.log">
+            <BurstFilter level="FATAL" rate="16" maxBurst="100"/>
+            <JsonLayout/>
+        </File>
+<!--        //блок файл комментируем-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%-5p %d{yyyy-MM-dd HH:mm:ss} [%t] %C (%F:%L) - %m%n"/>
+<!--            %-5p отступ, место на тип лога. 5 символов на логирование. Нехватающее дополняем пробелами. -->
+<!--            %d{yyyy-MM-dd HH:mm:ss} формат даты. ss.SSS с миллисекундами-->
+<!--            %t имя потока, который делает всё-->
+<!--            %m%n - само сообщение и перенос-->
+<!--            (%F:%L) файл, строка-->
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level = "trace">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="MyFile" />
+<!--            //<AppenderRef ref="MyFile" /> комменитруем-->
+        </Root>
+    </Loggers>
+</Configuration>
